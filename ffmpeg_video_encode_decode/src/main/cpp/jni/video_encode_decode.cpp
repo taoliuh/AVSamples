@@ -14,7 +14,7 @@ extern "C" {
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_me_sonaive_videoencodedecode_FfmpegUtil_getFfmpegInfo(JNIEnv *env, jobject thiz) {
+Java_me_sonaive_videoencodedecode_FfmpegUtil_nGetFfmpegInfo(JNIEnv *env, jobject thiz) {
     char info[40000] = {0};
     void *i = 0;
     const AVCodec *c_temp = av_codec_iterate(&i);

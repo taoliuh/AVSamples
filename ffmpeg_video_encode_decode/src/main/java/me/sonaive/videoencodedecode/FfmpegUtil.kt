@@ -14,5 +14,9 @@ object FfmpegUtil {
         System.loadLibrary("video-encode-decode")
     }
 
-    external fun getFfmpegInfo(): String
+    fun getFfmpegInfo(): String {
+        return nGetFfmpegInfo()
+    }
+
+    private external fun nGetFfmpegInfo(): String
 }

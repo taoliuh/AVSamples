@@ -1,0 +1,2 @@
+include ':app', ':lab'
+include ':ffmpeg_video_encode_decode'

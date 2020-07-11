@@ -9,19 +9,32 @@ set(THIRD_PARTY_ROOT ${CMAKE_SOURCE_DIR}/../../../../thirdparty)
 
 #ffmpeg 路径
 set(FFMPEG_PATH ${THIRD_PARTY_ROOT}/ffmpeg)
+#x264 路径
+set(X264_PATH ${THIRD_PARTY_ROOT}/x264)
 #jni 路径
 set(NATIVE_JNI_PATH ${CMAKE_SOURCE_DIR}/jni)
+#解码路径
+set(NATIVE_VIDEO_DECODE_PATH ${CMAKE_SOURCE_DIR}/decode)
+
 
 # 2. 添加头文件目录
 #FFmpeg 头文件
 include_directories(${FFMPEG_PATH}/include)
+#x264 头文件
+include_directories(${X264_PATH}/include)
 #jni 头文件
 include_directories(${NATIVE_JNI_PATH})
+#解码路径
+include_directories(${NATIVE_VIDEO_DECODE_PATH})
 #cpp 目录下的头文件
 include_directories(${CMAKE_SOURCE_DIR})
 
+#解码 CPP
+FILE(GLOB NATIVE_DECODE_ALL_CPP ${NATIVE_VIDEO_DECODE_PATH}/*.cpp)
 #JNI 接口
 FILE(GLOB JNI_CPP ${NATIVE_JNI_PATH}/*.cpp)
+#工具
+FILE(GLOB COMMON_CPP ${CMAKE_SOURCE_DIR}/*.cpp)
 
 # 3. 添加ffmpeg相关的so库
 add_library(avutil SHARED IMPORTED)
@@ -42,6 +55,9 @@ set_target_properties(swscale PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/l
 add_library(avformat SHARED IMPORTED)
 set_target_properties(avformat PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/libs/${CMAKE_ANDROID_ARCH_ABI}/libavformat.so)
 
+add_library(x264 SHARED IMPORTED)
+set_target_properties(x264 PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/libs/${CMAKE_ANDROID_ARCH_ABI}/libx264.so)
+
 # 查找代码中使用到的系统库
 find_library( # Sets the name of the path variable.
         log-lib
@@ -59,6 +75,8 @@ add_library(
         SHARED
 
         # 列出参与编译的所有源文件
+        ${NATIVE_DECODE_ALL_CPP}
+        ${COMMON_CPP}
         ${JNI_CPP})
 
 # 指定编译目标库时，cmake要链接的库
@@ -72,5 +90,6 @@ target_link_libraries(
         avfilter
         swscale
         avformat
+        x264
         # 连接 log 库
         ${log-lib})

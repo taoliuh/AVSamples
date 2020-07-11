@@ -6,10 +6,10 @@
 #include <string>
 
 extern "C" {
-    #include <libavcodec/avcodec.h>
-    #include <libavformat/avformat.h>
-    #include <libavfilter/avfilter.h>
-    #include <libavcodec/jni.h>
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libavfilter/avfilter.h>
+#include <libavcodec/jni.h>
 }
 
 extern "C"
@@ -36,7 +36,7 @@ Java_me_sonaive_videoencodedecode_FfmpegUtil_nGetFfmpegInfo(JNIEnv *env, jobject
                 break;
         }
         sprintf(info, "%s[%s]\n", info, c_temp->name);
-        c_temp = c_temp->next;
+        c_temp = av_codec_iterate(&i);
     }
     return env->NewStringUTF(info);
 }

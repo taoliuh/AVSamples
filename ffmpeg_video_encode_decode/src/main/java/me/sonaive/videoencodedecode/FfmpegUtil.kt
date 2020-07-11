@@ -5,6 +5,7 @@ package me.sonaive.videoencodedecode
  */
 object FfmpegUtil {
     init {
+        System.loadLibrary("x264")
         System.loadLibrary("avcodec")
         System.loadLibrary("avfilter")
         System.loadLibrary("avformat")

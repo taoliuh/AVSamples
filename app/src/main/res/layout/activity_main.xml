@@ -19,13 +19,35 @@
         titlebar:leftText="@string/back"
         titlebar:leftType="textView" />
 
-    <TextView
-        android:id="@+id/helloWorld"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello World!"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ffmpegInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/ffmpegVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

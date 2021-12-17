@@ -5,7 +5,7 @@ package me.sonaive.videoencodedecode
  */
 object FfmpegUtil {
     init {
-        System.loadLibrary("x264")
+        System.loadLibrary("x264.x")
         System.loadLibrary("avcodec")
         System.loadLibrary("avfilter")
         System.loadLibrary("avformat")
@@ -19,5 +19,11 @@ object FfmpegUtil {
         return nGetFfmpegInfo()
     }
 
+    fun getFfmpegVersion(): String {
+        return nGetFfmpegVersion()
+    }
+
     private external fun nGetFfmpegInfo(): String
+
+    private external fun nGetFfmpegVersion(): String
 }

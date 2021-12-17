@@ -56,7 +56,7 @@ add_library(avformat SHARED IMPORTED)
 set_target_properties(avformat PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/libs/${CMAKE_ANDROID_ARCH_ABI}/libavformat.so)
 
 add_library(x264 SHARED IMPORTED)
-set_target_properties(x264 PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/libs/${CMAKE_ANDROID_ARCH_ABI}/libx264.so)
+set_target_properties(x264 PROPERTIES IMPORTED_LOCATION ${THIRD_PARTY_ROOT}/libs/${CMAKE_ANDROID_ARCH_ABI}/libx264.x.so)
 
 # 查找代码中使用到的系统库
 find_library( # Sets the name of the path variable.

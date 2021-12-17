@@ -12,8 +12,10 @@ class MainActivity : BaseBusinessActivity() {
     override val layoutId = R.layout.activity_main
 
     override fun binds() {
+        titleBar.showStatusBar(false)
         titleBar.setListener { _, action, _ -> if (action == ACTION_LEFT_TEXT) finish() }
-        helloWorld.text = FfmpegUtil.getFfmpegInfo()
+        ffmpegInfo.text = FfmpegUtil.getFfmpegInfo()
+        ffmpegVersion.text = FfmpegUtil.getFfmpegVersion()
     }
 
     override fun <T> processData(state: BaseViewState<T>) {
